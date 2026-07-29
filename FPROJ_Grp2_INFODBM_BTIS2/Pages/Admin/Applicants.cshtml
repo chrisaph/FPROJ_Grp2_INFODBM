@@ -1,0 +1,33 @@
+﻿@page
+@model FPROJ_Grp2_INFODBM_BTIS2.Pages.Admin.ApplicantsModel
+
+<h2>Applicants</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>@student.StudId</td>
+
+                <td>
+                    @student.FName
+                    @student.LName
+                </td>
+
+                <td>@student.Status</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

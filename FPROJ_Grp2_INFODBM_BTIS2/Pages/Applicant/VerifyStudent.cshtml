@@ -1,0 +1,27 @@
+﻿@page
+@model FPROJ_Grp2_INFODBM_BTIS2.Pages.Applicant.VerifyStudentModel
+
+<h2>Recruitment Application</h2>
+
+<p>Please enter your Student ID to continue.</p>
+
+<form method="post">
+
+    <div class="mb-3">
+        <label asp-for="StudentId" class="form-label"></label>
+        <input asp-for="StudentId" class="form-control" />
+        <span asp-validation-for="StudentId" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-primary">
+        Continue
+    </button>
+
+</form>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger mt-3">
+        @Model.ErrorMessage
+    </div>
+}
