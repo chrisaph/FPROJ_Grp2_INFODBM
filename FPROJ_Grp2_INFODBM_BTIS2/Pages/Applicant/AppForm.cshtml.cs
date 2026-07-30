@@ -86,7 +86,14 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Applicant
 
         public IActionResult OnPost()
         {
+            var student = _context.Students
+    .FirstOrDefault(s => s.StudId == Student.StudId);
 
+            if (student != null &&
+                (student.Status == "Accepted" || student.Status == "Waitlisted"))
+            {
+                return Content("This application can no longer be edited.");
+            }
 
             ModelState.Remove("Student.Status");
             ModelState.Remove("Student.Remarks");
@@ -116,9 +123,7 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Applicant
             Student.Remarks = null;
             Student.StudId = Student.StudId.Trim();
 
-
-            var student = _context.Students
-                .FirstOrDefault(s => s.StudId == Student.StudId);
+           
             if (student == null)
             {
                 // Student doesn't exist yet, so add a new one
@@ -136,6 +141,10 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Applicant
                 student.Did = Student.Did;
                 student.Ssid = Student.Ssid;
                 student.Aplid = Student.Aplid;
+                student.DateOfBirth = Student.DateOfBirth;
+                student.Address = Student.Address;
+                student.Email = Student.Email;
+                student.Hobbies = Student.Hobbies;
                 student.Status = "Pending";
                 student.Remarks = null;
             }

@@ -48,6 +48,29 @@
                 class="form-select">
         </select>
     </div>
+    <div class="mb-3">
+        <label asp-for="Student.DateOfBirth" class="form-label"></label>
+        <input asp-for="Student.DateOfBirth"
+               type="date"
+               class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Student.Address" class="form-label"></label>
+        <input asp-for="Student.Address"
+               class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Student.Email" class="form-label"></label>
+        <input asp-for="Student.Email"
+               type="email"
+               class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Student.Hobbies" class="form-label"></label>
+        <textarea asp-for="Student.Hobbies"
+                  class="form-control"
+                  rows="3"></textarea>
+    </div>
 
     <div class="mb-3">
         <label>Portfolio Link</label>
