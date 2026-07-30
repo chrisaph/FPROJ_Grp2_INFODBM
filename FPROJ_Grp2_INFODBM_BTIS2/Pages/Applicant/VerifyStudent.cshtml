@@ -4,6 +4,7 @@
 <h2>Recruitment Application</h2>
 
 <p>Please enter your Student ID to continue.</p>
+<div asp-validation-summary="All" class="text-danger"></div>
 
 <form method="post">
 
@@ -13,7 +14,7 @@
         <span asp-validation-for="StudentId" class="text-danger"></span>
     </div>
 
-    <button class="btn btn-primary">
+    <button type="submit" class="btn btn-primary">
         Continue
     </button>
 

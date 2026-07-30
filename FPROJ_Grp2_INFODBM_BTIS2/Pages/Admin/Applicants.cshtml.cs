@@ -2,22 +2,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using FPROJ_Grp2_INFODBM_BTIS2.Data;
 using FPROJ_Grp2_INFODBM_BTIS2.Models;
 
-namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Admin;
-
-public class ApplicantsModel : PageModel
+namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Admin
 {
-    public void OnGet()
+    public class ApplicationsModel : PageModel
     {
-        Students = _context.Students.ToList();
+        private readonly ApplicationDbContext _context;
+
+        public ApplicationsModel(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public List<ApplicantView> Applicants { get; set; } = new();
+        public void OnGet()
+        {
+            Applicants = _context.ApplicantViews.ToList();
+        }
     }
-
-    public List<Student> Students { get; set; } = new();
-
-    private readonly ApplicationDbContext _context;
-
-    public ApplicantsModel(ApplicationDbContext context)
-    {
-        _context = context;
-    }
-
 }

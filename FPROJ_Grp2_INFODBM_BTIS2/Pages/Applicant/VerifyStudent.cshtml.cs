@@ -20,17 +20,25 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Applicant
 
         public IActionResult OnPost()
         {
-            var student = _context.Students
-                .FirstOrDefault(s => s.StudId == StudentId);
-
-            if (student == null)
+            if (string.IsNullOrWhiteSpace(StudentId))
             {
-                ErrorMessage = "Student ID not found.";
+                ModelState.AddModelError("StudentId", "Student ID is required.");
                 return Page();
             }
 
-            return RedirectToPage("ApplicationForm",
-                new { studid = StudentId });
+            if (!int.TryParse(StudentId, out int id))
+            {
+                ModelState.AddModelError("StudentId", "Student ID must be numeric.");
+                return Page();
+            }
+
+            if (id < 11000000 || id > 99100000)
+            {
+                ModelState.AddModelError("StudentId", "Student ID must be between 11000000 and 99100000.");
+                return Page();
+            }
+
+            return RedirectToPage("/Applicant/AppForm", new { StudId = StudentId });
         }
     }
 }

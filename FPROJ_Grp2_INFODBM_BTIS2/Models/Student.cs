@@ -19,8 +19,7 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Models
 
         public int Aplid { get; set; }
 
-        public string Status { get; set; }
-
+        public string? Status { get; set; }
         public string? Remarks { get; set; }
     }
 }

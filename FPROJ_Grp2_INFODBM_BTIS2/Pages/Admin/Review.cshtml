@@ -1,0 +1,100 @@
+﻿@page "{id}"
+@model FPROJ_Grp2_INFODBM_BTIS2.Pages.Admin.ReviewModel
+
+<h2>Applicant Review</h2>
+
+@if (Model.Student != null)
+{
+    <table class="table table-bordered">
+
+        <tr>
+            <th>Student ID</th>
+            <td>@Model.Student.StudId</td>
+        </tr>
+
+        <tr>
+            <th>Name</th>
+            <td>
+                @Model.Student.LName,
+                @Model.Student.FName
+                @Model.Student.MName
+            </td>
+        </tr>
+
+        <tr>
+            <th>Status</th>
+            <td>@Model.Student.Status</td>
+        </tr>
+
+        <tr>
+            <th>Remarks</th>
+            <td>@Model.Student.Remarks</td>
+        </tr>
+
+        <tr>
+            <th>Portfolio</th>
+            <td>
+                @if (Model.Portfolio != null)
+                {
+                    <a href="@Model.Portfolio.PortfolioLink" target="_blank">
+                        View Portfolio
+                    </a>
+                }
+            </td>
+        </tr>
+
+    </table>
+
+    <h4>Choices</h4>
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Position</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var c in Model.Choices)
+            {
+                <tr>
+                    <td>@c.Rank</td>
+                    <td>@c.ChoiceName</td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+    <form method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Remarks</label>
+            <textarea asp-for="Remarks"
+                      class="form-control"
+                      rows="3"></textarea>
+        </div>
+
+        <input type="hidden" asp-for="Id" />
+
+        <button asp-page-handler="Approve"
+                class="btn btn-success">
+            Approve
+        </button>
+
+        <button asp-page-handler="Waitlist"
+                class="btn btn-warning">
+            Waitlist
+        </button>
+
+        <button asp-page-handler="Decline"
+                class="btn btn-danger">
+            Decline
+        </button>
+
+    </form>
+}
