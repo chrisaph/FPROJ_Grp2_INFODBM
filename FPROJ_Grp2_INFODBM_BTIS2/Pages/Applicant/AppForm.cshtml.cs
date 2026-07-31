@@ -43,7 +43,10 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Applicant
 
         public List<SelectListItem> Positions { get; set; } = new();
 
-
+        public bool IsReadOnly =>
+        Student != null &&
+        (Student.Status == "Accepted" ||
+         Student.Status == "Waitlisted");
 
         public void OnGet()
         {
@@ -78,10 +81,34 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Applicant
                     new SelectListItem { Text = "Layout", Value = "Layout" },
                     new SelectListItem { Text = "Video", Value = "Video" }
                 };
-            Student = new Student
+            var existingStudent = _context.Students
+            .FirstOrDefault(s => s.StudId == StudId);
+
+            if (existingStudent != null)
             {
-                StudId = StudId
-            };
+                Student = existingStudent;
+
+                var portfolio = _context.Portfolios
+                    .FirstOrDefault(p => p.StudId == StudId);
+
+                PortfolioLink = portfolio?.PortfolioLink ?? "";
+
+                var choices = _context.Choices
+                    .Where(c => c.StudId == StudId)
+                    .OrderBy(c => c.Rank)
+                    .ToList();
+
+                Choice1 = choices.ElementAtOrDefault(0)?.ChoiceName ?? "";
+                Choice2 = choices.ElementAtOrDefault(1)?.ChoiceName ?? "";
+                Choice3 = choices.ElementAtOrDefault(2)?.ChoiceName ?? "";
+            }
+            else
+            {
+                Student = new Student
+                {
+                    StudId = StudId
+                };
+            }
         }
 
         public IActionResult OnPost()

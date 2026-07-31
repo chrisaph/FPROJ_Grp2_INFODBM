@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using FPROJ_Grp2_INFODBM_BTIS2.Data;
 using FPROJ_Grp2_INFODBM_BTIS2.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Admin
 {
@@ -14,9 +15,16 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Admin
         }
 
         public List<ApplicantView> Applicants { get; set; } = new();
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (HttpContext.Session.GetString("Admin") == null)
+            {
+                return RedirectToPage("Login");
+            }
+
             Applicants = _context.ApplicantViews.ToList();
+
+            return Page();
         }
     }
 }

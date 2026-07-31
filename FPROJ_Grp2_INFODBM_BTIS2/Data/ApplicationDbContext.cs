@@ -25,6 +25,8 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Data
 
         public DbSet<ApplicantView> ApplicantViews { get; set; }
 
+        public DbSet<Admin> Admins { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -37,7 +39,7 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Data
             modelBuilder.Entity<School>().ToTable("Schools");
             modelBuilder.Entity<Scholarship>().ToTable("Scholarships");
             modelBuilder.Entity<ApplicantType>().ToTable("Applicant_Type");
-
+            modelBuilder.Entity<Admin>().ToTable("Admins");
             // View mapping
             modelBuilder.Entity<ApplicantView>()
                 .ToView("vw_Applicants");

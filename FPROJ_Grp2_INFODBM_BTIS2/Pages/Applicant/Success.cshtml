@@ -1,4 +1,42 @@
 ﻿@page
-@model FPROJ_Grp2_INFODBM_BTIS2.Pages.Applicant.SuccessModel
+
 @{
+    ViewData["Title"] = "Application Submitted";
 }
+
+<div class="container mt-5">
+
+    <div class="card shadow-sm">
+
+        <div class="card-body text-center p-5">
+
+            <h2 class="text-success">
+                ✅ Application Submitted Successfully
+            </h2>
+
+            <hr />
+
+            <p class="lead">
+                Your recruitment application has been successfully saved.
+            </p>
+
+            <p>
+                Thank you for applying to the
+                <strong>Benildean Press Corps</strong>.
+            </p>
+
+            <p>
+                You may revisit your application later using your
+                <strong>Student ID</strong> if your application status is still
+                <strong>Pending</strong> or <strong>Declined</strong>.
+            </p>
+
+            <a asp-page="/Index" class="btn btn-primary btn-lg mt-3">
+                Return to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

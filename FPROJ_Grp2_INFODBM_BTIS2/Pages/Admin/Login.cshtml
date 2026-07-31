@@ -1,0 +1,28 @@
+﻿@page
+@model FPROJ_Grp2_INFODBM_BTIS2.Pages.Admin.LoginModel
+
+<h2>Administrator Login</h2>
+
+<form method="post">
+
+    <div class="mb-3">
+        <label>Username</label>
+        <input asp-for="Username" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Password</label>
+        <input asp-for="Password"
+               type="password"
+               class="form-control" />
+    </div>
+
+    <button class="btn btn-primary">
+        Login
+    </button>
+
+</form>
+
+<div class="text-danger">
+    @Model.ErrorMessage
+</div>

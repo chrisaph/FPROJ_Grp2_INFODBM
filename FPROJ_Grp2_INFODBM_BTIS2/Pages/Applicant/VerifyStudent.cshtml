@@ -1,9 +1,8 @@
 ﻿@page
 @model FPROJ_Grp2_INFODBM_BTIS2.Pages.Applicant.VerifyStudentModel
 
-<h2>Recruitment Application</h2>
-
-<p>Please enter your Student ID to continue.</p>
+<h2>Apply</h2>
+<p>Enter your Student ID to begin or continue your application.</p>
 <div asp-validation-summary="All" class="text-danger"></div>
 
 <form method="post">
@@ -25,4 +24,7 @@
     <div class="alert alert-danger mt-3">
         @Model.ErrorMessage
     </div>
+}
+@{
+    ViewData["Title"] = "Apply";
 }

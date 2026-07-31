@@ -33,8 +33,13 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Admin
 
         public ApplicantType? ApplicantType { get; set; }
 
-        public void OnGet(string id)
+        public IActionResult OnGet(string id)
         {
+            if (HttpContext.Session.GetString("Admin") == null)
+            {
+                return RedirectToPage("Login");
+            }
+
             Student = _context.Students
                 .Include(s => s.Degree)
                     .ThenInclude(d => d.School)
@@ -43,7 +48,9 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Admin
                 .FirstOrDefault(s => s.StudId == id);
 
             if (Student == null)
-                return;
+            {
+                return NotFound();   // or RedirectToPage("Applicants")
+            }
 
             Portfolio = _context.Portfolios
                 .FirstOrDefault(p => p.StudId == id);
@@ -52,6 +59,8 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Admin
                 .Where(c => c.StudId == id)
                 .OrderBy(c => c.Rank)
                 .ToList();
+
+            return Page();
         }
 
         public IActionResult OnPostApprove()

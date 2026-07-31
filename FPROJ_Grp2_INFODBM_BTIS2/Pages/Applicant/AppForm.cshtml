@@ -11,25 +11,35 @@
 
     <input asp-for="Student.StudId" type="hidden" />
     <div class="mb-3">
+        <label>Status</label>
+        <input class="form-control"
+               value="@Model.Student?.Status"
+               readonly />
+    </div>
+    <div class="mb-3">
         <label>First Name</label>
-        <input asp-for="Student.FName" class="form-control" />
+        <input asp-for="Student.FName" class="form-control"
+               readonly="@Model.IsReadOnly" />
     </div>
 
     <div class="mb-3">
         <label>Middle Name</label>
-        <input asp-for="Student.MName" class="form-control" />
+        <input asp-for="Student.MName" class="form-control"
+               readonly="@Model.IsReadOnly" />
     </div>
 
     <div class="mb-3">
         <label>Last Name</label>
-        <input asp-for="Student.LName" class="form-control" />
+        <input asp-for="Student.LName" class="form-control"
+               readonly="@Model.IsReadOnly" />
     </div>
 
     <div class="mb-3">
         <label>Degree</label>
         <select asp-for="Student.Did"
                 asp-items="Model.Degrees"
-                class="form-select">
+                class="form-select"
+                disabled="@Model.IsReadOnly">
         </select>
     </div>
 
@@ -37,7 +47,8 @@
         <label>Scholarship</label>
         <select asp-for="Student.Ssid"
                 asp-items="Model.Scholarships"
-                class="form-select">
+                class="form-select"
+                disabled="@Model.IsReadOnly">
         </select>
     </div>
 
@@ -45,43 +56,50 @@
         <label>Applicant Type</label>
         <select asp-for="Student.Aplid"
                 asp-items="Model.Applicant_Type"
-                class="form-select">
+                class="form-select"
+                disabled="@Model.IsReadOnly">
         </select>
     </div>
     <div class="mb-3">
-        <label asp-for="Student.DateOfBirth" class="form-label"></label>
+        <label asp-for="Student.DateOfBirth" class="form-control"></label>
         <input asp-for="Student.DateOfBirth"
                type="date"
-               class="form-control" />
+               class="form-control"
+               readonly="@Model.IsReadOnly" />
     </div>
     <div class="mb-3">
-        <label asp-for="Student.Address" class="form-label"></label>
+        <label asp-for="Student.Address" class="form-control"></label>
         <input asp-for="Student.Address"
-               class="form-control" />
+               class="form-control"
+               readonly="@Model.IsReadOnly" />
     </div>
     <div class="mb-3">
-        <label asp-for="Student.Email" class="form-label"></label>
+        <label asp-for="Student.Email" class="form-control"></label>
         <input asp-for="Student.Email"
                type="email"
-               class="form-control" />
+               class="form-control"
+               readonly="@Model.IsReadOnly" />
     </div>
     <div class="mb-3">
-        <label asp-for="Student.Hobbies" class="form-label"></label>
+        <label asp-for="Student.Hobbies" class="form-control"
+               readonly="@Model.IsReadOnly"></label>
         <textarea asp-for="Student.Hobbies"
                   class="form-control"
-                  rows="3"></textarea>
+                  rows="3" readonly="@Model.IsReadOnly"></textarea>
     </div>
 
     <div class="mb-3">
         <label>Portfolio Link</label>
-        <input asp-for="PortfolioLink" class="form-control" />
+        <input asp-for="PortfolioLink" class="form-control"
+               readonly="@Model.IsReadOnly" />
     </div>
 
     <div class="mb-3">
         <label>1st Choice</label>
         <select asp-for="Choice1"
                 asp-items="Model.Positions"
-                class="form-select">
+                class="form-select"
+                disabled="@Model.IsReadOnly">
         </select>
     </div>
 
@@ -89,7 +107,8 @@
         <label>2nd Choice</label>
         <select asp-for="Choice2"
                 asp-items="Model.Positions"
-                class="form-select">
+                class="form-select"
+                disabled="@Model.IsReadOnly">
         </select>
     </div>
 
@@ -97,12 +116,28 @@
         <label>3rd Choice</label>
         <select asp-for="Choice3"
                 asp-items="Model.Positions"
-                class="form-select">
+                class="form-select"
+                disabled="@Model.IsReadOnly">
         </select>
     </div>
 
-    <button type="submit" class="btn btn-success">
+    <button class="btn btn-success"
+            disabled="@Model.IsReadOnly">
         Apply
     </button>
+
+    @if (Model.IsReadOnly)
+    {
+        <div class="alert alert-warning">
+
+            <strong>
+                This application has already been
+                @Model.Student.Status.
+            </strong>
+
+            Editing has been disabled.
+
+        </div>
+    }
 
 </form>
