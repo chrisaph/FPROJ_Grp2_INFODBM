@@ -5,6 +5,8 @@
 
 @if (Model.Student != null)
 {
+    <h4>Personal Information</h4>
+
     <table class="table table-bordered">
 
         <tr>
@@ -20,6 +22,58 @@
                 @Model.Student.MName
             </td>
         </tr>
+
+        <tr>
+            <th>Date of Birth</th>
+            <td>@(Model.Student.DateOfBirth?.ToString("MMMM dd, yyyy") ?? "N/A")</td>
+        </tr>
+
+        <tr>
+            <th>Address</th>
+            <td>@Model.Student.Address</td>
+        </tr>
+
+        <tr>
+            <th>Email</th>
+            <td>@Model.Student.Email</td>
+        </tr>
+
+        <tr>
+            <th>Hobbies</th>
+            <td>@Model.Student.Hobbies</td>
+        </tr>
+
+    </table>
+
+    <h4>Academic Information</h4>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <th>School</th>
+            <td>@Model.Student.Degree?.School?.SchoolName</td>
+        </tr>
+
+        <tr>
+            <th>Degree</th>
+            <td>@Model.Student.Degree?.DName</td>
+        </tr>
+
+        <tr>
+            <th>Scholarship</th>
+            <td>@Model.Student.Scholarship?.SSType</td>
+        </tr>
+
+        <tr>
+            <th>Applicant Type</th>
+            <td>@Model.Student.ApplicantType?.AplType</td>
+        </tr>
+
+    </table>
+
+    <h4>Application Information</h4>
+
+    <table class="table table-bordered">
 
         <tr>
             <th>Status</th>
@@ -45,9 +99,9 @@
 
     </table>
 
-    <h4>Choices</h4>
+    <h4>Position Choices</h4>
 
-    <table class="table">
+    <table class="table table-bordered">
 
         <thead>
             <tr>

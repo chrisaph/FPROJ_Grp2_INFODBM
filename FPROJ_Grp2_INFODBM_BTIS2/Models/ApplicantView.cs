@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FPROJ_Grp2_INFODBM_BTIS2.Models
 {
@@ -20,7 +21,7 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Models
         public string Scholarship { get; set; } = string.Empty;
 
         public string ApplicantType { get; set; } = string.Empty;
-
+        [Column("portfolio_link")]
         public string? PortfolioLink { get; set; }
         public string Status { get; set; } = string.Empty;
 

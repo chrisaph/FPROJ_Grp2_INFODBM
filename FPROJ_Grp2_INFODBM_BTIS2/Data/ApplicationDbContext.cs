@@ -46,6 +46,26 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Data
                 .HasKey(a => a.StudId);
             modelBuilder.Entity<Choice>()
                 .ToTable(tb => tb.HasTrigger("TR_MaxThreeChoices"));
+
+            modelBuilder.Entity<Student>()
+                .HasOne(s => s.Degree)
+                .WithMany()
+                .HasForeignKey(s => s.Did);
+
+            modelBuilder.Entity<Student>()
+                .HasOne(s => s.Scholarship)
+                .WithMany()
+                .HasForeignKey(s => s.Ssid);
+
+            modelBuilder.Entity<Student>()
+                .HasOne(s => s.ApplicantType)
+                .WithMany()
+                .HasForeignKey(s => s.Aplid);
+
+            modelBuilder.Entity<Degree>()
+                .HasOne(d => d.School)
+                .WithMany()
+                .HasForeignKey(d => d.Sid);
         }
 
 

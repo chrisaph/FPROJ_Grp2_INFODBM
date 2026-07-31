@@ -10,5 +10,7 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Models
         public string DName { get; set; } = string.Empty;
 
         public int Sid { get; set; }
+
+        public School? School { get; set; }
     }
 }

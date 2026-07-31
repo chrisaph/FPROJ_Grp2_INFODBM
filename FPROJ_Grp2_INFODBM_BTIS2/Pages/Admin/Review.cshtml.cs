@@ -27,9 +27,19 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Pages.Admin
         [BindProperty]
         public string Remarks { get; set; } = string.Empty;
 
+        public Degree? Degree { get; set; }
+
+        public Scholarship? Scholarship { get; set; }
+
+        public ApplicantType? ApplicantType { get; set; }
+
         public void OnGet(string id)
         {
             Student = _context.Students
+                .Include(s => s.Degree)
+                    .ThenInclude(d => d.School)
+                .Include(s => s.Scholarship)
+                .Include(s => s.ApplicantType)
                 .FirstOrDefault(s => s.StudId == id);
 
             if (Student == null)

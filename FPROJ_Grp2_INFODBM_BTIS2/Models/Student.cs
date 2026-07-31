@@ -35,5 +35,10 @@ namespace FPROJ_Grp2_INFODBM_BTIS2.Models
 
         [Column("hobbies")]
         public string? Hobbies { get; set; }
+        public Degree? Degree { get; set; }
+
+        public Scholarship? Scholarship { get; set; }
+
+        public ApplicantType? ApplicantType { get; set; }
     }
 }
